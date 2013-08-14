@@ -283,21 +283,14 @@ void mainLoop()
             //Interpret the received data as position/velocity of the other haptic device
 			//puts(str);
 		if(str[0] == 'f'){
-			printf("f");
 			//this is a force information
-			//Interpret the received data as a force on y axis
-			sscanf(str, "f %f", &y);
-			y += weight;
-			y = y>3.3?3.3:y;
-			y = y<-3.3?-3.3:y;
-
-			//printf("%f\n", y);
-			forceB[0] = 0;
+			sscanf(str, "f(%f, %f, %f)", &x, &y, &z);
+			forceB[0] = x;
 			forceB[1] = y;
-			forceB[2] = 0;
+			forceB[2] = z;
 			anchored = true;
-		}else
-		if(str[0] == 'p'){
+		}
+		else if(str[0] == 'p'){
 			sscanf(str, "p(%f, %f, %f, %f, %f, %f)", &x, &y, &z, &vx, &vy, &vz);
 			anchor[0] = x;
 			anchor[1] = y;
