@@ -288,6 +288,7 @@ void mainLoop()
 			forceB[0] = x;
 			forceB[1] = y;
 			forceB[2] = z;
+			printf("%s\r\n", str);
 			anchored = true;
 		}
 		else if(str[0] == 'p'){
@@ -369,7 +370,7 @@ HDCallbackCode HDCALLBACK AnchoredSpringForceCallback(void *pUserData)
 			hduVecScaleInPlace(force, springW);
 			forceTemp = forceB;
 			hduVecScaleInPlace(forceTemp, sensorW);
-			hduVecAdd(force, force, forceTemp);
+			force = forceTemp;
 		}
         
 		
