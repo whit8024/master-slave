@@ -1,11 +1,6 @@
 TO SETUP TELEOPERATION:
 
-Run Haptic_Config.exe
-
-Select device type
-Enter other computer's ip address
-Check box if labview sensor data needs to be transmitted. 
-Click apply to save configuration. 
+Change IP address of server in config.txt
 
 Run program. 
 
@@ -20,3 +15,5 @@ Weight of the stylus and/or attached shaft (for gravity compensation)
 
 They are constants defined and precisely commented in the first lines of the code file masterslave.cpp. 
 Their values can be changed as needed. After making changes, recompile the code and run.
+
+The flow control implementation can also be changed by manipulating the literal on line 394
