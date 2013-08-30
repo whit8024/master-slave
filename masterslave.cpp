@@ -386,11 +386,24 @@ HDCallbackCode HDCALLBACK AnchoredSpringForceCallback(void *pUserData)
 
     }
 
+
 	//sends position and velocity information to the other device
 
-	char str[80];
-	sprintf(str, "p(%f, %f, %f, %f, %f, %f)", position[0], position[1], position[2], velocity[0], velocity[1], velocity[2]);
-	SendToHost(str);
+	static clock_t last_time = clock(); //global variable to measure sending packets
+
+	if (clock() >= last_time + 1) //at least 1ms has passed since last packet
+
+	{
+
+		last_time = clock(); //update last_time
+
+		char str[80];
+
+		sprintf(str, "p(%f, %f, %f, %f, %f, %f)", position[0], position[1], position[2], velocity[0], velocity[1], velocity[2]);
+
+		SendToHost(str);
+
+	}
 
     hdEndFrame(hdGetCurrentDevice());
 
